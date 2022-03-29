@@ -89,6 +89,7 @@ $user = User::where('id', session('id'))->first();
             {{-- <a class="navbar-brand" href="#"><img src="{{ asset('images/logo.png') }}" height="40px" width="70px"
                     alt=""></a> --}}
             <a class="navbar-brand @if ($pageSlug == 'accueil') {{ 'activee' }} @endif" href="/index">Accueil</a>
+            <a class="navbar-brand" href="/create_patient">Nouveau Patient</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
                 aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>

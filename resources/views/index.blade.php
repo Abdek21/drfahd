@@ -28,9 +28,9 @@
              <table class="table tablesorter table-sm table-hover" id="">
                  <thead class="bg-dark text-white text-center">
                      <th>N° </th>
-                     <th>Prénom </th>
+                  
                      <th>Nom </th>
-                     <th>Age</th>
+                     
                      <th>Téléphone</th>
                      <th>Consultation</th>
                      <th class="">Actions</th>
@@ -45,9 +45,9 @@
                              <tr>
                                  {{-- <tr onclick="myFunction()" data-href="{{ $patient->id }}"> --}}
                                  <td>{{ $patient->id }}</td>
-                                 <td>{{ $patient->prenom }}</td>
+                                
                                  <td>{{ $patient->nom }}</td>
-                                 <td>{{ $patient->age }}</td>
+                                
                                  <td>{{ $patient->telephone }}</td>
                                  @php
                                      $consultations = Consultation::where('id_patient', $patient->id)->get();

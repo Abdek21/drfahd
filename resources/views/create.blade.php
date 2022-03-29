@@ -24,48 +24,28 @@
                     <h4 class="card-header text-center">Informations du patient</h4>
                     <div class="modal-body">
                         <div class="row mb-2">
-                            <div class="col-md-4">
-                                <div class="input-group mb-3 ">
-                                    <span class="input-group-text  fw-bold ">Prénom </span>
-                                    <input type="text" class="form-control" name="prenom" required>
-                                </div>
-                            </div>
-                            <div class="col-md-8">
+                          
+                            <div class="col-md-12">
                                 <div class="input-group mb-3 ">
                                     <span class="input-group-text  fw-bold ">Nom </span>
                                     <input type="text" class="form-control" name="nom" required>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+
+                            
+                            <div class="col-md-6">
                                 <div class="input-group mb-3 ">
                                     <span class="input-group-text  fw-bold ">Age</span>
                                     <input type="number" class="form-control" name="age" required>
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="input-group mb-3 ">
                                     <span class="input-group-text  fw-bold ">Téléphone</span>
                                     <input type="number" class="form-control" name="telephone" required>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-                                <div class="input-group mb-3 ">
-                                    <span class="input-group-text  fw-bold ">Situation fam.</span>
-                                    <select class="form-select " name="situ_fami" >
-                                        <option value="Marié" >Marié</option>
-                                        <option value="Célibataire"  >Célibataire</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="input-group mb-3 ">
-                                    <span class="input-group-text  fw-bold ">Assuré</span>
-                                    <select class="form-select " name="assure" >
-                                        <option value="Oui" >Oui</option>
-                                        <option value="Non"  >Non</option>
-                                    </select>
-                                </div>
-                            </div>
+                   
                             <div class="col-md-12">
                                 <div class="input-group mb-3 ">
                                     <span class="input-group-text  fw-bold ">Adresse</span>
