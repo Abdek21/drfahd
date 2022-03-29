@@ -29,6 +29,7 @@ Route::post('check', [UserController::class, 'check'])->name('check');
 
 Route::group(['middleware' => ['logged']], function () { 
     Route::get('index', [UserController::class, 'index']);
+    Route::get('/logout', [UserController::class, 'logout']);
     
     Route::get('create_patient', [PatientController::class, 'create']);
     Route::get('show_patient/{patient}', [PatientController::class, 'show']);
@@ -36,7 +37,11 @@ Route::group(['middleware' => ['logged']], function () {
     Route::post('store_patient', [PatientController::class, 'store']);
     Route::post('/store_consultation', [PatientController::class, 'store_consultation']);
     Route::get('getConsultation', [PatientController::class, 'getConsultation'])->name('getConsultation');
-    Route::get('/logout', [UserController::class, 'logout']);
+    Route::get('edit_patient/{patient}', [PatientController::class, 'edit']);
+    Route::put('update_patient/{patient}', [PatientController::class, 'update']);
+
+    Route::get('edit_consultation/{id}', [PatientController::class, 'edit_consultation']);
+    Route::put('update_consultation/{consultation}', [PatientController::class, 'update_consultation']);
+
 
 });
-

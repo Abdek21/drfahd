@@ -32,6 +32,15 @@
                                     <textarea name="adresse" class="form-control wbg " id="" rows="2" readonly>{{ $patient->adresse }}</textarea>
                                 </div>
                             </div>
+
+
+                            <div class="col-md-12">
+                                <div class="input-group mb-3 ">
+                                    <input type="submit" value="Update" class="btn btn-success"></br>
+                                </div>
+                            </div>
+
+                          
                         </div>
                     </div>
                 </div>  

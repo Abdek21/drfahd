@@ -1,4 +1,4 @@
- @php
+@php
      use App\Models\Consultation;
  @endphp
  @extends('layouts.1', ['page' => 'Liste des patients', 'pageSlug' => 'list', 'sup' => ''])
@@ -28,9 +28,9 @@
              <table class="table tablesorter table-sm table-hover" id="">
                  <thead class="bg-dark text-white text-center">
                      <th>N° </th>
-                  
+                     <th>Prénom </th>
                      <th>Nom </th>
-                     
+                     <th>Age</th>
                      <th>Téléphone</th>
                      <th>Consultation</th>
                      <th class="">Actions</th>
@@ -45,9 +45,9 @@
                              <tr>
                                  {{-- <tr onclick="myFunction()" data-href="{{ $patient->id }}"> --}}
                                  <td>{{ $patient->id }}</td>
-                                
+                                 <td>{{ $patient->prenom }}</td>
                                  <td>{{ $patient->nom }}</td>
-                                
+                                 <td>{{ $patient->age }}</td>
                                  <td>{{ $patient->telephone }}</td>
                                  @php
                                      $consultations = Consultation::where('id_patient', $patient->id)->get();
@@ -68,6 +68,11 @@
                                          data-bs-toggle="tooltip" data-bs-placement="left"
                                          title="Ajouter une consultation ">
                                          <i class="fas fa-file-medical"></i>
+                                     </a>
+                                     <a href="{{ url('edit_patient', $patient) }}" class="btn btn-link"
+                                         data-bs-toggle="tooltip" data-bs-placement="left"
+                                         title="Modifier ">
+                                         <i class="fas fa-edit"></i>
                                      </a>
                                      <form action="{{ url('delete', $patient) }}" method="post" class="d-inline">
                                          @csrf
@@ -95,9 +100,16 @@
          </div>
 
          <div id='consult' class="hidden">
-             <div class="card col mb-3">
-                 <h4 class="card-header text-center bg-dark text-white">Consultation</h4>
-                 <div class="card-body">
+             <div class="card col mb-3"> 
+                 <div class="card-header bg-dark  d-flex justify-content-between mb-2 mt-0">
+                    <h4 class="text-center text-white">Consultation</h4>
+                    <a href="#"  id="editbtn" class="btn btn-link"
+                        data-bs-toggle="tooltip" data-bs-placement="top"
+                        title="Modifier">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                </div>
+                 <div class="card-body"> 
                      <div class="form-group control-label mb-1">
                          <label class="control-label">Médecin <span class="text-danger">*</span></label>
                          <input type="text" class="form-control" name="medecin" id="medecin" readonly>
@@ -149,7 +161,6 @@
              var pid = $(this).data("href");
              console.log(pid);
              /* $("#tbd").children().remove();
-
              for (var i = 1; i <= pid; i++) {
                  // creates a table row
                  var row = document.createElement("tr");
@@ -157,16 +168,13 @@
                  var cellText = document.createTextNode("cell in row " + i );
                      cell.appendChild(cellText);
                      row.appendChild(cell);
-
                  // add the row to the end of the table body
                  parenttbody.appendChild(row);
              } */
-
              $.ajax({
                  type: "GET",
                  url: "{{ url('getConsultation') }}?pid=" + pid,
                  success: function(res) {
-
                      if (res) {
                          $("#tbd").children().remove();
                          $.each(res, function(key, value) {
@@ -178,61 +186,44 @@
                              var cellText = document.createTextNode(value);
                              cell.appendChild(cellText);
                              row.appendChild(cell);
-
                              // add the row to the end of the table body
                              parenttbody.appendChild(row);
                          });
-
                      } else {
                          $("#tbd").children().remove();
                      }
                  }
              });
          });
-
          function myFunction() {
              var pl = document.getElementById("patient_list");
              pl.classList.add("pd_70");
              pl.classList.remove("pds");
-
              var cl = document.getElementById("consult_list");
              cl.classList.add("show", "cld_30");
              cl.classList.remove("hidden");
-
-
-
-
-
          }
-
          function consulte() {
-
              var pl = document.getElementById("patient_list");
              pl.classList.add("pd_50");
              pl.classList.remove("pd_70");
-
              var cl = document.getElementById("consult_list");
              cl.classList.add("cld_10");
              cl.classList.remove("cld_30");
-
              var c = document.getElementById("consult");
              c.classList.add("show", "cdw_40");
              c.classList.remove("hidden");
-
          }
      </script>
 
      <script>
          $('select').change(function() { 
              var cid = $(this).val();
-
              if (cid) {
-
                  $.ajax({
                      type: "GET",
                      url: "{{ url('getConsultation') }}?cid=" + cid,
                      success: function(res) {
-
                          if (res) {
                              console.log(res.motif);
                              document.getElementById('medecin').value = res.medecin;
@@ -242,21 +233,18 @@
                              document.getElementById('diagnostiques').value = res.diagnostiques;
                              document.getElementById('traitements').value = res.traitements;
                              document.getElementById('resultats_paraclinique').value = res.resultats_paraclinique;
-
+                             document.getElementById("editbtn").href="edit_consultation/"+res.id;
                          } else {
-
                              $("#serv").empty();
                          }
                      }
                  });
              } else {
-
                  $("#serv").empty();
              }
              var pl = document.getElementById("patient_list");
              pl.classList.add("col-md-8");
              pl.classList.remove("pds"); 
-
              var c = document.getElementById("consult");
              c.classList.add("show", "col-md-4");
              c.classList.remove("hidden");  
@@ -266,38 +254,29 @@
          .pds {
              width: 100%;
          }
-
          .pd_70 {
              width: 70%;
          }
-
          .pd_60 {
              width: 60%;
          }
-
          .pd_50 {
              width: 50%;
          }
-
          .hidden {
              display: none;
          }
-
          .show {
              display: block;
          }
-
          .cld_30 {
              width: 30%;
          }
-
          .cld_10 {
              width: 10%;
          }
-
          .cdw_40 {
              width: 40%;
          }
-
      </style>
  @endsection
